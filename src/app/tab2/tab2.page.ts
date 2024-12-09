@@ -4,6 +4,7 @@ import { ExploreContainerComponent } from '../explore-container/explore-containe
 import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonSelect, IonSelectOption, IonTextarea,IonButton, IonList, IonItem, IonLabel } from '@ionic/angular/standalone'
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ProviderService } from '../services/provider.service';
 
 @Component({
   selector: 'app-tab2',
@@ -19,10 +20,26 @@ export class Tab2Page {
     opinion: new FormControl("", Validators.required)
   });
 
+  collectionName = 'reviews';
+
+  dataList: any[] = [];
+
+  constructor(private providerService: ProviderService){}
+
   onSubmit() {
-    console.log(this.myForm.value);
-    alert(this.myForm.controls["score"].value)
-    this.myForm.reset()
+    this.providerService.createDocument(this.collectionName, this.myForm.value).then(() => {
+        this.myForm.reset()
+    });
   }
+
+  ngOnInit() {
+    this.loadData();
+  }
+
+  loadData() {
+    this.providerService.readCollection(this.collectionName).subscribe((data) => {
+        this.dataList = data;
+    });
+}
 
 }

@@ -18,7 +18,7 @@
 
       <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
          
-        <ion-select formControlNmae="score" label="Calificación" placeholder="Seleccione un valor">
+        <ion-select formControlName="score" label="Calificación" placeholder="Seleccione un valor">
           <ion-select-option value="bueno">Bueno</ion-select-option>
           <ion-select-option value="regular">Regular</ion-select-option>
           <ion-select-option value="malo">Malo</ion-select-option>
@@ -44,7 +44,12 @@
         <ion-list>
 
             <!-- CARGA DE DATOS - INICIO -->
-       
+            @for (datum of dataList; track $index) {
+              <ion-item>
+                <ion-label>  {{  datum?.score  }}  </ion-label>
+                <ion-label>  {{  datum?.opinion  }}  </ion-label>
+              </ion-item>
+            }
             <!-- CARGA DE DATOS - FIN -->
 
         </ion-list>
