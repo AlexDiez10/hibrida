@@ -4,6 +4,7 @@ import { addIcons } from 'ionicons';
 import { triangle, ellipse, square } from 'ionicons/icons';
 import { peopleCircle } from 'ionicons/icons';
 import { clipboardOutline } from 'ionicons/icons';
+import { rocket } from 'ionicons/icons';
 
 @Component({
   selector: 'app-tabs',
@@ -16,6 +17,6 @@ export class TabsPage {
   public environmentInjector = inject(EnvironmentInjector);
 
   constructor() {
-    addIcons({ clipboardOutline ,peopleCircle ,triangle, ellipse, square });
+    addIcons({ rocket,clipboardOutline ,peopleCircle ,triangle, ellipse, square });
   }
 }
